@@ -1,0 +1,58 @@
+<div *ngIf="show === false && show2 === false" class="card bg-info mb-3" id="login">
+    <h4 class="card-header">Realizar renovação</h4>
+    <div class="card-body">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="nro_exemplar">Número do exemplar</label>
+                <input type="text" formControlName="nro_exemplar" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nro_exemplar.errors }" />
+                <div *ngIf="submitted && f.nro_exemplar.errors" class="invalid-feedback"></div>
+            </div>
+            <div class="form-group">
+                <label for="pub_isbn">ISBN da publicação</label>
+                <input type="text" formControlName="pub_isbn" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.pub_isbn.errors }" />
+                <div *ngIf="submitted && f.pub_isbn.errors" class="invalid-feedback"></div>
+            </div>
+            <div class="form-group">
+                <label for="cod_assoc">Código do associado</label>
+                <input type="text" formControlName="cod_assoc" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cod_assoc.errors }" />
+                <div *ngIf="submitted && f.cod_assoc.errors" class="invalid-feedback"></div>
+            </div>
+            <div class="form-group">
+                <label for="data_emp">Data da renovação</label>
+                <input type="date" formControlName="data_emp" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.data_emp.errors }" />
+                <div *ngIf="submitted && f.data_emp.errors" class="invalid-feedback"></div>
+            </div>
+            <div class="form-group">
+                <button [disabled]="loading" class="btn btn-light">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Renovar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div *ngIf="show === true" class="card bg-info mb-3">
+    <h4 id="new-card" class="card-header">Renovação realizada com sucesso!</h4>
+    <div class="card-body">
+        <h5>Dados da renovação:</h5>
+        <ul>
+            <li><span>Número do exemplar: {{info.nro_exemplar}}</span></li>
+            <li><span>ISBN da publicação: {{info.pub_isbn}}</span></li>
+            <li><span>Código do associado: {{info.cod_assoc}}</span></li>
+            <li><span>Data do empréstimo: {{info.data_emp}}</span></li>
+            <li><span>Data da devolução: {{info.data_devol}}</span></li>
+        </ul>
+        <button (click)="switch_value()" class="btn btn-light">Voltar</button>
+    </div>
+</div>
+
+<div *ngIf="show2 === true" class="card bg-info mb-3">
+    <h4 id="new-card" class="card-header">Não foi possível realizar o empréstimo</h4>
+    <div class="card-body">
+        <ul>
+            <li><span>{{retorno}}</span></li>
+        </ul>
+        <button (click)="switch_value()" class="btn btn-light">Voltar</button>
+    </div>
+</div>

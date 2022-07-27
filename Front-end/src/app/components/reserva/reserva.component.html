@@ -1,0 +1,42 @@
+<div *ngIf="show === false" class="card bg-info mb-3" id="login">
+    <h4 class="card-header">Realizar reserva</h4>
+    <div class="card-body">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="pub_isbn">ISBN da publicação</label>
+                <input type="text" formControlName="pub_isbn" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.pub_isbn.errors }" />
+                <div *ngIf="submitted && f.pub_isbn.errors" class="invalid-feedback"></div>
+            </div>
+            <div class="form-group">
+                <label for="cod_assoc">Código do associado</label>
+                <input type="text" formControlName="cod_assoc" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cod_assoc.errors }" />
+                <div *ngIf="submitted && f.cod_assoc.errors" class="invalid-feedback"></div>
+            </div>
+            <div class="form-group">
+                <label for="data">Data</label>
+                <input type="date" formControlName="data" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.data.errors }" />
+                <div *ngIf="submitted && f.data.errors" class="invalid-feedback"></div>
+            </div>
+            <div class="form-group">
+                <button [disabled]="loading" class="btn btn-light">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Reservar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div *ngIf="show === true" class="card bg-info mb-3" id="login">
+    <h4 id="new-card" class="card-header">Reserva cadastrada com sucesso!</h4>
+    <div class="card-body">
+        <h5>Dados da nova reserva:</h5>
+        <ul>
+            <li><span>ISBN da publicação: {{info.pub_isbn}}</span></li>
+            <li><span>Código do associado: {{info.cod_assoc}}</span></li>
+            <li><span>Data: {{info.data}}</span></li>
+            <li><span>Status: {{info.status}}</span></li>
+        </ul>
+        <button (click)="switch_value()" class="btn btn-light">Voltar</button>
+    </div>
+</div>

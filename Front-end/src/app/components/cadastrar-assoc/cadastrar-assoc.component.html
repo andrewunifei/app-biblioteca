@@ -1,0 +1,58 @@
+<div *ngIf="show === false" class="card bg-light mb-3" id="login">
+    <h4 class="card-header">Cadastar associado</h4>
+    <div class="card-body">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="senha">Senha</label>
+                <input type="password" formControlName="senha" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.senha.errors }" />
+                <div *ngIf="submitted && f.senha.errors" class="invalid-feedback"></div>
+            </div>
+            <div class="form-group">
+                <label for="nome">Nome</label>
+                <input type="text" formControlName="nome" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nome.errors }" />
+                <div *ngIf="submitted && f.nome.errors" class="invalid-feedback"></div>
+            </div>
+            <div class="form-group">
+                <label for="endereco">Endereço</label>
+                <input type="text" formControlName="endereco" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.endereco.errors }" />
+                <div *ngIf="submitted && f.endereco.errors" class="invalid-feedback"></div>
+            </div>
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                <div *ngIf="submitted && f.email.errors" class="invalid-feedback"></div>
+            </div>
+            <div class="form-group">
+                <label for="status">Status</label>
+                <div>
+                <select formControlName="status"  class="form-select">
+                    <option *ngFor="let status of statuss" [ngValue]="status">
+                      {{ status.abbrev }}
+                    </option>
+                </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <button [disabled]="loading" class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Cadastrar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div *ngIf="show === true" class="card bg-success mb-3" id="login">
+    <h4 id="new-card" class="card-header">Associado cadastrado com sucesso!</h4>
+    <div class="card-body">
+        <h5>Dados do novo associado:</h5>
+        <ul>
+            <li><span>Codigo: {{info.codigo}}</span></li>
+            <li><span>Nome: {{info.nome}}</span></li>
+            <li><span>Endereço: {{info.endereco}}</span></li>
+            <li><span>E-mail: {{info.email}}</span></li>
+            <li><span>Status: {{info.status}}</span></li>
+        </ul>
+        <button (click)="switch_value()" class="btn btn-light">Voltar</button>
+    </div>
+</div>

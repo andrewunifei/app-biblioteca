@@ -1,0 +1,7 @@
+span, h5, #new-card, li{
+    color: white;
+}
+
+li{
+    list-style: none;
+}

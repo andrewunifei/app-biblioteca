@@ -1,0 +1,88 @@
+<!-- Uma nav é renderizada dependendo do tipo de usuário -->
+
+<nav *ngIf="tipo === 'assoc'" class="navbar navbar-expand navbar-dark bg-info">
+    <a href="#" class="navbar-brand" style="font-weight: 900">e-Biblioteca</a>
+    <div class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a routerLink="consultar-pub" class="nav-link" id="a">Consultar Publicação</a>
+        </li>
+        <li class="nav-item">
+            <a routerLink="consultar-emp" class="nav-link" id="b">Consultar Empréstimos</a>
+        </li>
+        <li class="nav-item">
+            <a routerLink="renovar" class="nav-link" id="c">Realizar Renovação</a>
+        </li>
+    </div>
+    <div class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <span class="navbar-text" id="text">Olá, {{nome}}!</span>
+        </li>
+        <li class="nav-item">
+            <button class="btn btn-light" (click)="logout()">Logout</button>
+        </li>
+    </div>
+</nav>
+
+<nav *ngIf="tipo === 'gerente'" class="navbar navbar-expand navbar-dark bg-dark">
+    <a href="#" class="navbar-brand" style="font-weight: 900">e-Biblioteca</a>
+    <div class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a routerLink="cadastrar-func" class="nav-link" id="a">Cadastrar funcionário</a>
+        </li>
+    </div>
+    <div class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <span class="navbar-text" id="text">Olá, {{nome}}!</span>
+        </li>
+        <li class="nav-item">
+            <button class="btn btn-light" (click)="logout()">Logout</button>
+        </li>
+    </div>
+</nav>
+
+<nav *ngIf="tipo === 'funcionario'" class="navbar navbar-expand navbar-dark bg-success">
+    <a href="#" class="navbar-brand" style="font-weight: 900">e-Biblioteca</a>
+    <div class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a routerLink="cadastrar-assoc" class="nav-link" id="a">Cadastrar Associado</a>
+        </li>
+        <li class="nav-item dropdown" ngbDropdown>
+            <a class="nav-link dropdown-toggle" href="#" id="d" role="button" data-toggle="dropdown" aria-expanded="false">
+              Publicações
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+              <li><a class="dropdown-item" routerLink="cadastrar-pub">Cadastrar publicação</a></li>
+              <li><a class="dropdown-item" routerLink="consultar-pub">Consultar publicação</a></li>
+              <li><a class="dropdown-item" routerLink="reserva">Realizar reserva</a></li>
+            </ul>
+        </li>
+        <li class="nav-item dropdown" ngbDropdown>
+            <a class="nav-link dropdown-toggle" href="#" id="d" role="button" data-toggle="dropdown" aria-expanded="false">
+              Exemplares
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+              <li><a class="dropdown-item" routerLink="cadastrar-exemplar">Cadastrar exemplar</a></li>
+              <li><a class="dropdown-item" routerLink="emprestimo">Realizar empréstimo</a></li>
+              <li><a class="dropdown-item" routerLink="devolucao">Realizar devolução</a></li>
+            </ul>
+        </li>
+        <li class="nav-item">
+            <a routerLink="retirar" class="nav-link" id="a">Retirar da fila</a>
+        </li>
+        <li class="nav-item">
+            <a routerLink="relatorio" class="nav-link" id="c">Gerar relatório</a>
+        </li>
+    </div>
+    <div class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <span class="navbar-text" id="text">Olá, {{nome}}!</span>
+        </li>
+        <li class="nav-item">
+            <button class="btn btn-light" (click)="logout()">Logout</button>
+        </li>
+    </div>
+</nav>
+
+<div class="container mt-3">
+    <router-outlet></router-outlet>
+</div>

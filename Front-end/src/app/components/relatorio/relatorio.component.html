@@ -1,0 +1,16 @@
+<div class="card bg-success mb-3">
+    <h4 id="new-card" class="card-header">Empréstimos com atraso</h4>
+    <div class="card-body">
+        <ul *ngFor="let dado of dados">
+            <li >
+                ISBN da publicação: {{dado.pub_isbn}}
+            </li>
+            <li>
+                Código do associado: {{dado.cod_assoc}}
+            </li>
+            <li>
+                Data da devolução: {{dado.data_devol}}
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+<div *ngIf="show === false" class="card bg-info mb-3" id="login">
+    <h4 class="card-header">Consultar publicação</h4>
+    <div class="card-body">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div>
+                <label>Selecione para entrar com o ISBN do livro ou seu título:</label>
+                <div>
+                    <label><input type="radio" name="option" value="isbn" (change)="handleInput1()"> ISBN</label>
+                </div>
+                <div>
+                    <label><input type="radio" name="option" value="titulo" (change)="handleInput2()"> Título</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="isbn">ISBN</label>
+                <input type="text" [(ngModel)]="isbn" formControlName="isbn" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.isbn.errors }" />
+                <div *ngIf="submitted && f.isbn.errors" class="invalid-feedback"></div>
+            </div>
+            <div class="form-group">
+                <label for="titulo">Título</label>
+                <input type="text" [(ngModel)]="titulo" formControlName="titulo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.titulo.errors }" />
+                <div *ngIf="submitted && f.titulo.errors" class="invalid-feedback"></div>
+            </div>
+            <div class="form-group">
+                <button [disabled]="loading" class="btn btn-light">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Consultar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div *ngIf="show === true" class="card bg-info mb-3" id="login">
+    <h4 id="new-card" class="card-header">Resultado da busca:</h4>
+    <div class="card-body">
+        <h5>Exemplares disponíveis:</h5>
+        <ul *ngFor="let instance_d of instances_d">
+            <li><span>Número do exemplar: {{instance_d.numero}}</span></li>
+            <li><span>ISBN: {{instance_d.pub_isbn}}</span></li>
+            <li><span>Preço: {{instance_d.preco}}</span></li>
+        </ul>
+
+        <h5>Exemplares indisponíveis:</h5>
+        <ul *ngFor="let instance_i of instances_i">
+            <li><span>Número do exemplar: {{instance_i.numero}}</span></li>
+            <li><span>ISBN: {{instance_i.pub_isbn}}</span></li>
+            <li><span>Preço: {{instance_i.preco}}</span></li>
+        </ul>
+        
+        <button (click)="switch_value()" class="btn btn-light" style="margin-top:0.5em">Voltar</button>
+    </div>
+</div>

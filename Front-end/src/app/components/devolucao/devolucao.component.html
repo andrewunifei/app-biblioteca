@@ -1,0 +1,39 @@
+<div *ngIf="show === false && show2 === false" class="card bg-success mb-3" id="login">
+    <h4 class="card-header">Realizar devolução</h4>
+    <div class="card-body">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="nro_exemplar">Número do exemplar</label>
+                <input type="text" formControlName="nro_exemplar" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nro_exemplar.errors }" />
+                <div *ngIf="submitted && f.nro_exemplar.errors" class="invalid-feedback"></div>
+            </div>
+            <div class="form-group">
+                <label for="pub_isbn">ISBN da publicação</label>
+                <input type="text" formControlName="pub_isbn" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.pub_isbn.errors }" />
+                <div *ngIf="submitted && f.pub_isbn.errors" class="invalid-feedback"></div>
+            </div>
+            <div class="form-group">
+                <label for="cod_assoc">Código do associado</label>
+                <input type="text" formControlName="cod_assoc" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cod_assoc.errors }" />
+                <div *ngIf="submitted && f.cod_assoc.errors" class="invalid-feedback"></div>
+            </div>
+            <div class="form-group">
+                <button [disabled]="loading" class="btn btn-light">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Realizar devolução
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div *ngIf="show === true" class="card bg-success mb-3">
+    <h4 id="new-card" class="card-header">Devolução realizada com sucesso!</h4>
+    <div class="card-body">
+        <h5>Informações de multa:</h5>
+        <ul>
+            <li><span>Valor da multa: {{info.multa}} reais</span></li>
+        </ul>
+        <button (click)="switch_value()" class="btn btn-light">Voltar</button>
+    </div>
+</div>

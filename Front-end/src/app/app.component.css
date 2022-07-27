@@ -1,0 +1,45 @@
+#a{ 
+    color: white;
+    text-decoration: none;
+    
+}
+
+#a:hover{
+    color: rgb(233, 233, 233);
+}
+
+#b{ 
+    color: white;
+    text-decoration: none;
+    
+}
+
+#b:hover{
+    color: rgb(233, 233, 233);
+}
+
+#c{ 
+    color: white;
+    text-decoration: none;
+   
+}
+
+#c:hover{
+    color: rgb(233, 233, 233);
+}
+
+#d{ 
+    color: white;
+    text-decoration: none;
+   
+}
+
+#d:hover{
+    color: rgb(233, 233, 233);
+}
+
+
+#text{
+    padding-right: 1em;
+    color: white;
+}
